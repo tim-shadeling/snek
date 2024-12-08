@@ -33,7 +33,7 @@ function Update(){
 function StartGame(){
     TheScene = new Scene(gameWidth, gameHeight);
     if (mainloop != null) clearInterval(mainloop);
-    mainloop = setInterval(Update, 250);
+    mainloop = setInterval(Update, 75);
     updating = true;
     score = 0;
     score_display.textContent = "Счет: "+score;

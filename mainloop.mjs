@@ -32,7 +32,7 @@ function DrawGameOverMessage() {
 
 function Update(){
     Clear();
-    if (in_gameplay) TheScene.Update(ctx) else DrawGameOverMessage();
+    if (in_gameplay) {TheScene.Update(ctx);} else {DrawGameOverMessage();}
 };
 
 // ----------------------------------------------------------------------

@@ -41,8 +41,6 @@ function StartGame(){
     mainloop = setInterval(Update, 250);
     updating = true;
     scoreText.textContent = score;
-    createFood();
-    drawFood();
 };
 resetBtn.addEventListener("click", StartGame);
 StartGame();

@@ -80,7 +80,7 @@ export default class Snake {
             }
         }
 
-        if (gameover) window.dispatchEvent("gameover");
+        if (gameover) window.dispatchEvent(new Event("gameover"));
     }
 
     Update(ctx) {
@@ -89,7 +89,7 @@ export default class Snake {
 
         ctx.fillStyle = _C.snakeColor;
         ctx.strokeStyle = _C.snakeBorder;
-        snake.forEach(snakePart => {
+        this.bodyparts.forEach(snakePart => {
             ctx.fillRect(snakePart.x, snakePart.y, _C.unitSize, _C.unitSize);
             ctx.strokeRect(snakePart.x, snakePart.y, _C.unitSize, _C.unitSize);
         })

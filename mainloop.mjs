@@ -47,6 +47,7 @@ resetBtn.addEventListener("click", StartGame);
 StartGame();
 
 function OnFoodConsumed() {
+    print("food consumed!")
     score = score + 1
 }
 window.addEventListener("foodconsumed", OnFoodConsumed)

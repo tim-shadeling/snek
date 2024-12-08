@@ -55,8 +55,5 @@ window.addEventListener("foodconsumed", OnFoodConsumed)
 
 function OnGameOver() {
     in_gameplay = false;
-    clearInterval(mainloop);
-    mainloop = null;
-    Update();
 }
 window.addEventListener("gameover", OnGameOver);

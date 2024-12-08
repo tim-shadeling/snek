@@ -13,7 +13,7 @@ export default class Scene {
 
         this.snake = new Snake()
 
-        SpawnNewFoodItem()
+        this.SpawnNewFoodItem()
     }
 
     SpawnNewFoodItem() {

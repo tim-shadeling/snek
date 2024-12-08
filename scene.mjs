@@ -9,7 +9,7 @@ export default class Scene {
     constructor(canvas_width, canvas_height) {
         this.canvas_width = canvas_width;
         this.canvas_height = canvas_height;
-        this.score = 1
+        this.score = 0
 
         this.snake = new Snake()
 
@@ -17,8 +17,8 @@ export default class Scene {
     }
 
     SpawnNewFoodItem() {
-        this.foodX = randpos(0, gameWidth - _C.unitSize);
-        this.foodY = randpos(0, gameWidth - _C.unitSize);
+        this.foodX = randpos(0, this.canvas_width - _C.unitSize);
+        this.foodY = randpos(0, this.canvas_height - _C.unitSize);
     }
 
     CheckFoodConsumed(head) {

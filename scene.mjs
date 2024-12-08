@@ -9,7 +9,6 @@ export default class Scene {
     constructor(canvas_width, canvas_height) {
         this.canvas_width = canvas_width;
         this.canvas_height = canvas_height;
-        this.score = 0
 
         this.snake = new Snake()
 
@@ -23,11 +22,20 @@ export default class Scene {
 
     CheckFoodConsumed(head) {
         if (head.x === this.foodX && head.y === this.foodY) {
-            this.score = this.score + 1
             window.dispatchEvent("foodconsumed")
             SpawnNewFoodItem()
             return true
         }
         return false
+    }
+
+    DrawFood(ctx) {
+        ctx.fillStyle = _C.foodColor;
+        ctx.fillRect(this.foodX, this.foodY, _C.unitSize, _C.unitSize);
+    }
+
+    Update(ctx) {
+        this.DrawFood(ctx);
+        this.snake.Update(ctx);
     }
 }

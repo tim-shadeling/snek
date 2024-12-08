@@ -80,4 +80,16 @@ export default class Snake {
 
         if (gameover) window.dispatchEvent("gameover");
     }
+
+    Update(ctx) {
+        this.CheckGameOver()
+        this.Move()
+
+        ctx.fillStyle = _C.snakeColor;
+        ctx.strokeStyle = _C.snakeBorder;
+        snake.forEach(snakePart => {
+            ctx.fillRect(snakePart.x, snakePart.y, _C.unitSize, _C.unitSize);
+            ctx.strokeRect(snakePart.x, snakePart.y, _C.unitSize, _C.unitSize);
+        })
+    }
 }

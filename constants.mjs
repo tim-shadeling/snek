@@ -1,6 +1,6 @@
 export const
 snakeColor = "lightblue",
 snakeBorder = "black",
-foodColor = "red",
+foodColor = "green",
 boardBackground = "white",
 unitSize = 25;

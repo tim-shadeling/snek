@@ -11,7 +11,7 @@ export default class Scene {
         this.canvas_height = canvas_height;
         this.score = 1
 
-        this.snake = Snake()
+        this.snake = new Snake()
 
         SpawnNewFoodItem()
     }

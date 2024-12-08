@@ -24,8 +24,8 @@ function clearBoard(){
 };
 
 function Update(){
-    if (updating === false) {displayGameOver(); return;}
     clearBoard();
+    if (updating === false) {displayGameOver(); return;}
     TheScene.Update(ctx);
 };
 

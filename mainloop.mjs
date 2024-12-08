@@ -5,14 +5,17 @@ const resetBtn = document.querySelector("#resetBtn");
 const gameWidth = canvas.width;
 const gameHeight = canvas.height;
 
-import Scene from "./scene.js";
+import Scene from "./scene.mjs";
 let TheScene = Scene(gameWidth, gameHeight)
-import * as _C from "./constants.js";
+import * as _C from "./constants.mjs";
 
 let mainloop = null
 let running = false;
 
-//window.addEventListener("keydown", changeDirection);
+function Turn(e) {
+    TheScene.snake.Turn(e)
+}
+window.addEventListener("keydown", Turn);
 resetBtn.addEventListener("click", resetGame);
 
 StartGame();

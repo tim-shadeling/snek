@@ -1,73 +1,59 @@
-const canvas = document.querySelector("#gameBoard");
+const canvas = document.querySelector("#mycanvas");
 const ctx = canvas.getContext("2d");
-const scoreText = document.querySelector("#scoreText");
-const resetBtn = document.querySelector("#resetBtn");
+const score_display = document.querySelector("#score_display");
+const reset_button = document.querySelector("#reset_button");
 const gameWidth = canvas.width;
 const gameHeight = canvas.height;
 
-import Scene from "./scene.js";
-let TheScene = Scene(gameWidth, gameHeight)
-import * as _C from "./constants.js";
+let TheScene = null
+import Scene from "./scene.mjs";
+import * as _C from "./constants.mjs";
 
-let mainloop = null
-let running = false;
+let mainloop = null;
+let in_gameplay = null;
+let score = 0
 
-//window.addEventListener("keydown", changeDirection);
-resetBtn.addEventListener("click", resetGame);
+function Turn(e) {
+    TheScene.snake.Turn(e)
+}
+window.addEventListener("keydown", Turn);
 
-StartGame();
-
-function StartGame(){
-    running = true;
-    scoreText.textContent = score;
-    createFood();
-    drawFood();
-    nextTick();
-};
-
-mainloop = setInterval(nextTick, 250)
-
-function nextTick(){
-    if (running === false) {displayGameOver(); return;}
-    clearBoard();
-    drawFood();
-    moveSnake();
-    drawSnake();
-    checkGameOver();
-};
-function clearBoard(){
+function Clear(){
     ctx.fillStyle = _C.boardBackground;
     ctx.fillRect(0, 0, gameWidth, gameHeight);
 };
-function createFood(){
-    function randomFood(min, max){
-        const randNum = Math.round((Math.random() * (max - min) + min) / _C.unitSize) * _C.unitSize;
-        return randNum;
-    }
-    foodX = randomFood(0, gameWidth - _C.unitSize);
-    foodY = randomFood(0, gameWidth - _C.unitSize);
-};
-function drawFood(){
-    ctx.fillStyle = _C.foodColor;
-    ctx.fillRect(foodX, foodY, _C.unitSize, _C.unitSize);
-};
-function displayGameOver(){
-    ctx.font = "50px MV Boli";
+
+function DrawGameOverMessage() {
+    ctx.font = "50px Arial";
     ctx.fillStyle = "black";
     ctx.textAlign = "center";
-    ctx.fillText("GAME OVER!", gameWidth / 2, gameHeight / 2);
-    clearInterval(mainloop)
+    ctx.fillText("Игра окончена", gameWidth / 2, gameHeight / 2);
 };
-function resetGame(){
+
+function Update(){
+    Clear();
+    if (in_gameplay) {TheScene.Update(ctx);} else {DrawGameOverMessage();}
+};
+
+// ----------------------------------------------------------------------
+function StartGame(){
+    TheScene = new Scene(gameWidth, gameHeight);
+    if (mainloop != null) clearInterval(mainloop);
+    mainloop = setInterval(Update, 75);
+    in_gameplay = true;
     score = 0;
-    xVelocity = _C.unitSize;
-    yVelocity = 0;
-    snake = [
-        {x:_C.unitSize * 4, y:0},
-        {x:_C.unitSize * 3, y:0},
-        {x:_C.unitSize * 2, y:0},
-        {x:_C.unitSize, y:0},
-        {x:0, y:0}
-    ];
-    StartGame();
+    score_display.textContent = "Счет: "+score;
 };
+reset_button.addEventListener("click", StartGame);
+StartGame();
+
+function OnFoodConsumed() {
+    score = score + 1;
+    score_display.textContent = "Счет: "+score;
+}
+window.addEventListener("foodconsumed", OnFoodConsumed)
+
+function OnGameOver() {
+    in_gameplay = false;
+}
+window.addEventListener("gameover", OnGameOver);

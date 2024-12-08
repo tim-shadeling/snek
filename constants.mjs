@@ -1,5 +1,5 @@
 export const
-snakeColor = "lightgreen",
+snakeColor = "lightblue",
 snakeBorder = "black",
 foodColor = "red",
 boardBackground = "white",

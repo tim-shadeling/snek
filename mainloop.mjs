@@ -10,7 +10,7 @@ import Scene from "./scene.mjs";
 import * as _C from "./constants.mjs";
 
 let mainloop = null;
-let updating = null;
+let in_gameplay = null;
 let score = 0
 
 function Turn(e) {
@@ -18,15 +18,25 @@ function Turn(e) {
 }
 window.addEventListener("keydown", Turn);
 
-function clearBoard(){
+function Clear(){
     ctx.fillStyle = _C.boardBackground;
     ctx.fillRect(0, 0, gameWidth, gameHeight);
 };
 
+function DrawGameOverMessage() {
+    ctx.font = "50px Arial";
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.fillText("Игра окончена", gameWidth / 2, gameHeight / 2);
+};
+
 function Update(){
-    clearBoard();
-    if (updating === false) {displayGameOver(); return;}
-    TheScene.Update(ctx);
+    if (in_gameplay) {
+        Clear();
+        TheScene.Update(ctx);
+        return
+    }
+    DrawGameOverMessage();
 };
 
 // ----------------------------------------------------------------------
@@ -34,7 +44,7 @@ function StartGame(){
     TheScene = new Scene(gameWidth, gameHeight);
     if (mainloop != null) clearInterval(mainloop);
     mainloop = setInterval(Update, 75);
-    updating = true;
+    in_gameplay = true;
     score = 0;
     score_display.textContent = "Счет: "+score;
 };
@@ -48,11 +58,7 @@ function OnFoodConsumed() {
 window.addEventListener("foodconsumed", OnFoodConsumed)
 
 function OnGameOver() {
-    updating = false;
-    ctx.font = "50px Arial";
-    ctx.fillStyle = "black";
-    ctx.textAlign = "center";
-    ctx.fillText("Игра окончена", gameWidth / 2, gameHeight / 2);
+    in_gameplay = false;
     clearInterval(mainloop);
     mainloop = null;
 }

@@ -5,11 +5,11 @@
     border: 4px solid;
 }
 #score_display{
-    font-family: "Permanent Marker", cursive;
+    font-family: "Arial";
     font-size: 50px;
 }
 #reset_button{
-    font-family: "Permanent Marker", cursive;
+    font-family: "Arial";
     font-size: 22px;
     width: 100px;
     height: 50px;

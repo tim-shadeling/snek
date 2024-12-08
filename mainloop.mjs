@@ -36,20 +36,20 @@ function StartGame(){
     mainloop = setInterval(Update, 250);
     updating = true;
     score = 0;
-    score_display.textContent = score;
+    score_display.textContent = "Счет: "+score;
 };
 reset_button.addEventListener("click", StartGame);
 StartGame();
 
 function OnFoodConsumed() {
     score = score + 1;
-    score_display.textContent = score;
+    score_display.textContent = "Счет: "+score;
 }
 window.addEventListener("foodconsumed", OnFoodConsumed)
 
 function OnGameOver() {
     updating = false;
-    ctx.font = "50px MV Boli";
+    ctx.font = "50px Arial";
     ctx.fillStyle = "black";
     ctx.textAlign = "center";
     ctx.fillText("Игра окончена", gameWidth / 2, gameHeight / 2);

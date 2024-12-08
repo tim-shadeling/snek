@@ -32,7 +32,7 @@ function DrawScore() {
 function Update(){
     if (updating === false) {displayGameOver(); return;}
     clearBoard();
-    TheScene.Update();
+    TheScene.Update(ctx);
 };
 
 function StartGame(){

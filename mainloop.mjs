@@ -6,7 +6,7 @@ const gameWidth = canvas.width;
 const gameHeight = canvas.height;
 
 import Scene from "./scene.mjs";
-let TheScene = Scene(gameWidth, gameHeight)
+let TheScene = new Scene(gameWidth, gameHeight)
 import * as _C from "./constants.mjs";
 
 let mainloop = null

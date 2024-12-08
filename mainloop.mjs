@@ -1,7 +1,7 @@
-const canvas = document.querySelector("#gameBoard");
+const canvas = document.querySelector("#mycanvas");
 const ctx = canvas.getContext("2d");
-const scoreText = document.querySelector("#scoreText");
-const resetBtn = document.querySelector("#resetBtn");
+const score_display = document.querySelector("#score_display");
+const reset_button = document.querySelector("#reset_button");
 const gameWidth = canvas.width;
 const gameHeight = canvas.height;
 
@@ -23,32 +23,27 @@ function clearBoard(){
     ctx.fillRect(0, 0, gameWidth, gameHeight);
 };
 
-function DrawScore() {
-    ctx.font = "20px Arial";
-    ctx.fillStyle = "#000000";
-    ctx.fillText("Счет: "+score, x/2-90, 35);
-}
-
 function Update(){
     if (updating === false) {displayGameOver(); return;}
     clearBoard();
     TheScene.Update(ctx);
 };
 
+// ----------------------------------------------------------------------
 function StartGame(){
     TheScene = new Scene(gameWidth, gameHeight);
     if (mainloop != null) clearInterval(mainloop);
     mainloop = setInterval(Update, 250);
     updating = true;
     score = 0;
-    scoreText.textContent = score;
+    score_display.textContent = score;
 };
-resetBtn.addEventListener("click", StartGame);
+reset_button.addEventListener("click", StartGame);
 StartGame();
 
 function OnFoodConsumed() {
     score = score + 1;
-    scoreText.textContent = score;
+    score_display.textContent = score;
 }
 window.addEventListener("foodconsumed", OnFoodConsumed)
 
@@ -57,7 +52,7 @@ function OnGameOver() {
     ctx.font = "50px MV Boli";
     ctx.fillStyle = "black";
     ctx.textAlign = "center";
-    ctx.fillText("GAME OVER!", gameWidth / 2, gameHeight / 2);
+    ctx.fillText("Игра окончена", gameWidth / 2, gameHeight / 2);
     clearInterval(mainloop);
     mainloop = null;
 }

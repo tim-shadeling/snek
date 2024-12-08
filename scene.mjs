@@ -35,7 +35,7 @@ export default class Scene {
     }
 
     Update(ctx) {
-        this.DrawFood(ctx);
         this.snake.Update(ctx);
+        this.DrawFood(ctx);
     }
 }

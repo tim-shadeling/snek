@@ -14,6 +14,8 @@ export default class Snake {
         ]; 
 
         this.scene = scene
+        this.canvas_width = scene.canvas_width;
+        this.canvas_height = scene.canvas_height;
     }
 
     Move() {
@@ -62,13 +64,13 @@ export default class Snake {
             case (this.bodyparts[0].x < 0):
                 gameover = true;
                 break;
-            case (this.bodyparts[0].x >= gameWidth):
+            case (this.bodyparts[0].x >= this.canvas_width):
                 gameover = true;
                 break;
             case (this.bodyparts[0].y < 0):
                 gameover = true;
                 break;
-            case (this.bodyparts[0].y >= gameHeight):
+            case (this.bodyparts[0].y >= this.canvas_height):
                     gameover = true;
                     break;
         }

@@ -23,7 +23,7 @@ export default class Scene {
     CheckFoodConsumed(head) {
         if (head.x === this.foodX && head.y === this.foodY) {
             window.dispatchEvent(new Event("foodconsumed"));
-            SpawnNewFoodItem()
+            this.SpawnNewFoodItem()
             return true
         }
         return false

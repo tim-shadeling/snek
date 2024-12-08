@@ -81,11 +81,11 @@ export default class Snake {
         }
 
         if (gameover) window.dispatchEvent(new Event("gameover"));
+        return gameover
     }
 
     Update(ctx) {
-        this.CheckGameOver()
-        this.Move()
+        if (!this.CheckGameOver()) this.Move();
 
         ctx.fillStyle = _C.snakeColor;
         ctx.strokeStyle = _C.snakeBorder;

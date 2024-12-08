@@ -40,6 +40,7 @@ function StartGame(){
     if (mainloop != null) clearInterval(mainloop);
     mainloop = setInterval(Update, 250);
     updating = true;
+    score = 0;
     scoreText.textContent = score;
 };
 resetBtn.addEventListener("click", StartGame);
